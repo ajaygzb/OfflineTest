@@ -1,0 +1,139 @@
+package rough;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class test {
+
+	public static void main(String[] args) throws ParseException {
+
+		int arr[]= {10,11,13,4,23,2,55,2,5,7,3,9,1};
+
+			DateIncremant("31-12-2018");
+			System.out.println(ValidTriangle(11,10,10));
+
+		FindPairsWithSum(arr,10);
+
+
+
+	}
+	//*********************************Program-1**************************************************	
+	public static void DateIncremant(String Date) throws ParseException{
+
+		String DATE_FORMAT = "dd-MM-yyyy";
+		String date_string = Date;
+		java.text.SimpleDateFormat sdf =
+				new java.text.SimpleDateFormat(DATE_FORMAT);
+		Date date = (Date)sdf.parse(date_string);
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(date); 
+		System.out.println("Date is : " + sdf.format(c1.getTime()));
+		c1.add(Calendar.DATE,1);
+		System.out.println("Date + 1 month is : " + sdf.format(c1.getTime()));	
+	}
+
+	// Test Cases
+	//1. To verify Boundry values for input date i.e. Last day of Month
+	//2. To verify Boundry values for input date i.e. Last Month of year
+	//3. To verify Month values are between 1-12
+	//4.   To Verify date range is between 1-31
+
+
+	//*********************************Program-2**************************************************	
+	public static boolean ValidTriangle(int a,int b,int c){
+		Boolean isvalid=false;
+		if (a <= 0 || b <= 0 || c <= 0){
+			isvalid= false;
+		}else if (a == b && b == c){
+			isvalid= true;
+		}
+		else if (a >= b+c || c >= b+a || b >= a+c){
+
+			isvalid= false;
+		}
+		else if (b==c || a==b || c==a) {
+
+			isvalid= true;
+		}
+
+		return isvalid;
+
+	}
+
+	// Test cases-2
+	//1. To verify all inputs parameter are Positive to form a Triangle
+	//2. To validate 2 sides are of equal in size
+	//3. To validate triangle is valid if sum of its two sides is greater than the third side.
+	//4. To verify side A not equal to side B not equal to C 
+	//5. To verify if all 3 sides of triangle are equals A=B=C
+
+
+	//**********************************************Program-3 **********************************
+
+	public static void FindPairsWithSum(int []input, int k){
+		Map<Integer, Integer> pairs = new HashMap<Integer, Integer>();
+
+		for(int i=0;i<input.length;i++){
+
+			if(pairs.containsKey(input[i]))
+				System.out.println(input[i] +", "+ pairs.get(input[i]));
+			else
+				pairs.put(k-input[i], input[i]);
+		}
+
+	}
+
+	//**********************************Program-4**************************
+	//count no. of line in a file
+	
+	public static void countline() throws IOException{
+		FileInputStream fstream = new FileInputStream("samplefile.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+		String strLine;
+		int count = 0;
+		while ((strLine = br.readLine()) != null)   {
+		  count++;
+		}
+		System.out.println("No.of line in file is:   "+ count);
+
+	}
+	
+	//*******************************************Program-5*****************************************
+
+       //Test cases to Verify New Mozila version.
+	
+	//1. To verify UI of Browser window Text,buttons,color and size
+	//2. To open a URL and load Home page
+	//3. To verify Refresh,Stop, functionality
+	//4. Test History,Delete history,Bookmarks.
+	//5. Check browser compatibility with extensions.
+	//6. Test Flash website support
+	//7.Test Multiple tabs open and close
+	//8. Test Secured pop up on secured URL 
+	//9. Verify private browsing with (incognito mode)
+	//10. Verify Ip address hiding
+	//11 verify store,delete,refresh cookies
+	//12 verify browser look and feel on different device/screen sizes.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
